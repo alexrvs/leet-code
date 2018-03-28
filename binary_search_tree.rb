@@ -145,11 +145,22 @@ module BinaryTree
       @tree.inspect
     end
 
+    def max_depth(root)
+      unless root.nil?
+        depth = [max_depth( root.left ), max_depth( root.right )].max + 1
+      else
+        depth = 0
+      end
+      depth
+    end
+
   end
 
   puts 'Level order traversal of tree :'
   self::Level.new(tree).level_order_tree
-  puts ''
+  puts '|------------------------------|'
+  puts '----------Max Depth-------------'
+  puts self::Level.new(tree).max_depth tree
 
 end
 
