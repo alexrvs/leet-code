@@ -94,6 +94,34 @@ module BinaryTree
        print results.uniq
     end
 
+
+    def level_order_tree
+      root = @tree
+      return [] unless root
+      queue, result, level = [], [], []
+      num_nodes, current_count = 1, 0
+      queue.unshift(root)
+
+      while(!queue.empty?)
+        current = queue.pop()
+        current_count += 1
+        level.push(current.val)
+
+        queue.unshift(current.left) if current.left
+        queue.unshift(current.right) if current.right
+
+        if(current_count == num_nodes)
+          result.unshift(level)
+          level = []
+          current_count = 0
+          num_nodes = queue.length
+        end
+
+      end
+      result = result.reverse.map { |r| r.compact }.reject { |r| r.empty? }
+      result
+    end
+
     def post_order(node)
       return [] if node.nil?
       results = []
@@ -120,7 +148,7 @@ module BinaryTree
   end
 
   puts 'Level order traversal of tree :'
-  self::Level.new(tree).level_order
+  self::Level.new(tree).level_order_tree
   puts ''
 
 end
