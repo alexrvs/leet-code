@@ -23,9 +23,8 @@ module BinaryTree
   unsymmetric_tree.left = BinaryTree::Node.new(2)
   unsymmetric_tree.right = BinaryTree::Node.new(2)
   unsymmetric_tree.left.left = BinaryTree::Node.new(nil)
-  unsymmetric_tree.left.right = BinaryTree::Node.new(4)
-  unsymmetric_tree.right.left = BinaryTree::Node.new(3)
-  unsymmetric_tree.right.right = BinaryTree::Node.new(4)
+  unsymmetric_tree.left.right = BinaryTree::Node.new(3)
+  unsymmetric_tree.right.right = BinaryTree::Node.new(3)
 
   class TreeNode
 
@@ -34,6 +33,10 @@ module BinaryTree
 
     def is_symmetric(root)
       unless root.nil?
+        print root.left.val unless root.left.nil?
+        print '|'
+        print root.right.val unless root.right.nil?
+        print '----'
         is_symmetric(root.left) == is_symmetric(root.right)
       end
     end
