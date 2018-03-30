@@ -52,6 +52,6 @@ module BinaryTree
   in_order = [9,3,15,20,7]
   postorder = [9,15,7,20,3]
 
-  tree = BinaryTree.build_tree(in_order, postorder)
+  BinaryTree.build_tree(in_order, postorder)
 
 end
