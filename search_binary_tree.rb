@@ -20,8 +20,9 @@ module BinaryTree
       @tree = tree
     end
 
+
     def search_bst(root, val)
-      return [] if root.nil?
+      return [] if root == nil
 
       case root.val <=> val
         when 1
@@ -32,6 +33,39 @@ module BinaryTree
           search_bst(root.left, val)
         else
           return nil
+      end
+
+    end
+
+
+    def search_bst2(root, val)
+
+      return nil if root == nil
+
+      if root.val != nil
+        if root.val == val
+
+          return root.val
+        elsif root.val > val
+
+          search_bst2 root.right, val
+        elsif root.val < val
+
+          search_bst2 root.left, val
+        else
+
+          return nil
+        end
+
+      end
+    end
+
+
+    def search_bst_iteration(root, val)
+      return [] if root == nil
+      @node = root
+
+      while  @node != nil
       end
 
     end
@@ -53,9 +87,9 @@ module BinaryTree
     end
 
     def run
-      target = 2
+      target = 3
       searcher = BinaryTree::BSTSearcher.new(self.init)
-      result = searcher.search_bst(searcher.tree, target)
+      result = searcher.search_bst2(searcher.tree, target)
       result
     end
 
