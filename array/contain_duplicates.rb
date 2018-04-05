@@ -1,13 +1,17 @@
+require 'pry'
+
 # @param {Integer[]} nums
 # @return {Boolean}
 def contains_duplicate(nums)
+  map = {}
 
-  nums.each do |num_i|
-    nums.drop(1).each do |num_j|
-      if num_i == num_j
-        return true
-      end
-    end
-    return false
+  nums.each do |num|
+    return true if map[num]
+    map[num] = true
+
   end
+  return false
 end
+
+nums = [2,14,18,22,22]
+contains_duplicate nums
