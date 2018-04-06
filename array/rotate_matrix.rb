@@ -30,7 +30,8 @@ def rotate_a(matrix)
   0.upto(row_x - 1) do |j|
     row = []
     (col_y - 1).downto(0) do |i|
-       row  << matrix[i][j]
+
+      row  << matrix[i][j]
     end
     rotate_matrix << row
   end
@@ -39,11 +40,27 @@ def rotate_a(matrix)
 
 end
 
+def rotate_b(matrix)
+  m, n = matrix, matrix.size
 
-matrix =[[ 5, 1, 9,11],[ 2, 4, 8,10],[13, 3, 6, 7],[15,14,12,16]]
+  (0..n).each do |i|
+    (i..n - 1).each do |j|
+        m[i][j], m[j][i] = m[j][i], m[i][j]
+
+    end
+  end
+  m.each(&:reverse!); nil
+  return m
+end
+
+
+matrix =[[ 5, 1, 9,11],
+         [ 2, 4, 8,10],
+         [13, 3, 6, 7],
+         [15,14,12,16]]
 
 #print rotate matrix
 
 matrix_c = [[1,2,3],[4,5,6],[7,8,9]]
 
-print rotate_a matrix
+print rotate_b matrix
