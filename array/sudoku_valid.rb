@@ -26,11 +26,39 @@ def is_valid_sudoku(board)
     end
 
   end
-  binding.pry
 
   return true
 
 end
+
+def is_valid_sudoku_a(board)
+
+  rowbuckets = Array.new(9) {Hash.new}
+  collbuckets = Array.new(9) {Hash.new}
+  boxbuckets = Array.new(9){Hash.new}
+
+
+  0.upto(8) do |i|
+    0.upto(8) do |j|
+      char = board[i][j]
+      next if char == "."
+
+      return false if rowbuckets[i][char]
+      rowbuckets[i][char] = true
+
+      return false if collbuckets[j][char]
+      collbuckets[j][char] = true
+
+      k = (i / 3) * 3 + (j / 3)
+      return false if boxbuckets[k][char]
+      boxbuckets[k][char] = true
+
+    end
+  end
+  return true
+
+end
+
 
 valid_board = [[".","8","7","6","5","4","3","2","1"],
          ["2",".",".",".",".",".",".",".","."],
@@ -53,6 +81,6 @@ invalid_board = [["2","8","7","6","5","4","3","9","1"],
                  ["9",".",".",".",".",".",".",".","."]]
 
 
-puts is_valid_sudoku valid_board
+puts is_valid_sudoku_a valid_board
 
-puts is_valid_sudoku invalid_board
+puts is_valid_sudoku_a invalid_board
